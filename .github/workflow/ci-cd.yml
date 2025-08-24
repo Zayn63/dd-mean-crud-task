@@ -24,4 +24,3 @@ jobs:
         run: |
           docker build -t zayn63/crud-backend ./backend
           docker push zayn63/crud-backend
-n
