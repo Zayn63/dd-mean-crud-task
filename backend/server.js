@@ -1,40 +1,43 @@
 const express = require("express");
-// const cors = require("cors");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
 
-// Middleware to parse requests
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Enable CORS
+var corsOptions = {
+  origin: "http://localhost:8081" // change if frontend runs elsewhere
+};
+app.use(cors(corsOptions));
 
+// Parse requests
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Database
 const db = require("./app/models");
-const mongoose = db.mongoose;
-
-// Use your provided MongoDB Atlas connection string (exactly as given)
-const mongoUri = "mongodb+srv://junaidmansuri7863:dpYQVbtc7n1NrR3z@cluster1.wyxpkve.mongodb.net/";
-
-mongoose
-  .connect(mongoUri, {
+db.mongoose
+  .connect(db.url, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
   .then(() => {
-    console.log("✅ Connected to MongoDB Atlas!");
+    console.log("✅ Connected to the database!");
   })
-  .catch((err) => {
-    console.error("❌ Cannot connect to MongoDB Atlas!", err);
+  .catch(err => {
+    console.error("❌ Cannot connect to the database!", err);
     process.exit();
   });
 
 // Default route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to your MongoDB Atlas connected app 🚀" });
+  res.json({ message: "Welcome to Zayn's application 🚀" });
 });
 
-// Routes
-require("./app/routes/turorial.routes")(app);
+// API routes
+require("./app/routes/tutorial.routes")(app);
 
-// Start server
+// Set port and listen
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on port ${PORT}.`);
