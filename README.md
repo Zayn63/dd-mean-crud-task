@@ -92,6 +92,24 @@ Frontend & backend running successfully ✔️
 Documentation included
 
 
+![Backend Screenshot](screenshots/backend.png)
+## Frontend Screenshots
+
+These screenshots show the frontend Angular application running in the browser:
+
+![Frontend Screenshot 1](screenshots/frontend1.png)
+![Frontend Screenshot 2](screenshots/frontend2.png)
+
+## CI/CD Workflow Screenshot
+
+This screenshot shows the GitHub Actions CI/CD workflow building and pushing Docker images:
+
+![CI/CD Screenshot](screenshots/cicd.png)
+
+
+
+
+
 Author
 
 Junaid Mansuri
